@@ -223,28 +223,37 @@
   <audio id="bg-music" loop>
     <source src="background_music.mp3" type="audio/mpeg">
   </audio>
+<script>
+  const audio = document.getElementById("bg-music");
+  const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
+  let i = 0;
 
-  <script>
-    const audio = document.getElementById("bg-music");
-    const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
-    let i = 0;
+  function typeWriterLoop() {
+    const display = document.getElementById("typing-text");
 
-    function typeWriter() {
-      if (i < text.length) {
-        document.getElementById("typing-text").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 40);
-      }
+    if (i < text.length) {
+      display.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriterLoop, 40);
+    } else {
+      setTimeout(() => {
+        display.innerHTML = '';
+        i = 0;
+        typeWriterLoop();
+      }, 3000); // wait 3 seconds before starting again
     }
+  }
 
-    window.addEventListener("click", () => {
-      audio.play().catch(() => {});
-    });
-    window.addEventListener("touchstart", () => {
-      audio.play().catch(() => {});
-    });
+  window.addEventListener("click", () => {
+    audio.play().catch(() => {});
+  });
 
-    window.onload = typeWriter;
-  </script>
+  window.addEventListener("touchstart", () => {
+    audio.play().catch(() => {});
+  });
+
+  window.onload = typeWriterLoop;
+</script>
+
 </body>
 </html>
