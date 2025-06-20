@@ -11,33 +11,10 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-      background-size: 400% 400%;
-      animation: gradientMove 20s ease infinite;
+      height: 100%;
+      transition: background-color 3s ease;
     }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .floating-hearts, .floating-quotes {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .floating-hearts span, .floating-quotes span {
-      position: absolute;
-      font-size: 1.5rem;
-      animation: floatUp 10s linear infinite;
-      opacity: 0.4;
-      color: #ff66a3;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-      30% { opacity: 0.8; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-    }
+
     h1 {
       font-family: 'Great Vibes', cursive;
       text-align: center;
@@ -47,13 +24,22 @@
       margin-top: 60px;
       animation: fadeInDown 2s ease;
     }
+
+    h1 .heart {
+      animation: beat 1.2s infinite;
+      display: inline-block;
+    }
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-50px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    h1 .heart {
-      animation: beat 1.2s infinite;
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
     }
+
     .gallery {
       display: flex;
       overflow-x: auto;
@@ -61,22 +47,25 @@
       gap: 20px;
       padding: 30px;
       box-sizing: border-box;
-      position: relative;
       scroll-behavior: smooth;
       z-index: 1;
+      position: relative;
     }
+
     .gallery img {
       scroll-snap-align: center;
       width: 80vw;
       max-width: 300px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(255,105,180,0.5);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s ease;
       cursor: pointer;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
+
     .message-box {
       max-width: 800px;
       background: #ffffffcc;
@@ -85,8 +74,8 @@
       border-radius: 25px;
       text-align: center;
       box-shadow: 0 8px 25px rgba(255,105,180,0.3);
-      z-index: 1;
     }
+
     #typing-text {
       font-size: 1.3rem;
       color: #660033;
@@ -94,25 +83,25 @@
       min-height: 100px;
       white-space: pre-wrap;
     }
+
     .heart-beat {
       font-size: 2.5rem;
       color: #ff3366;
       animation: beat 1.2s infinite;
     }
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
+
     .footer {
       margin-top: 20px;
       font-size: 1.2rem;
       color: #aa0044;
     }
+
     .dev-info {
       text-align: center;
       margin: 40px 0;
       z-index: 1;
     }
+
     .dev-info img {
       width: 80vw;
       max-width: 300px;
@@ -120,10 +109,34 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       animation: floatPic 4s ease-in-out infinite;
     }
+
     @keyframes floatPic {
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+
+    .floating-hearts, .floating-quotes {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-hearts span, .floating-quotes span {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.4;
+      color: #ff66a3;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      30% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
     .emoji-burst {
       position: absolute;
       font-size: 2rem;
@@ -131,10 +144,12 @@
       pointer-events: none;
       z-index: 2;
     }
+
     @keyframes burstUp {
       0% { opacity:1; transform:translate(0,0) scale(1); }
       100% { opacity:0; transform:translate(var(--x),var(--y)) scale(2); }
     }
+
     @media(max-width:500px) {
       h1 { font-size: 2.4rem; }
       .gallery img { width: 90vw; }
@@ -150,6 +165,7 @@
     <span style="left:70%; animation-delay:3s;">💕</span>
     <span style="left:90%; animation-delay:0.5s;">💓</span>
   </div>
+
   <div class="floating-quotes" id="floating-quotes"></div>
 
   <h1>To My Love, Payel Bhunia <span class="heart">❤️</span></h1>
@@ -188,6 +204,16 @@
       const gallery = document.getElementById("gallery");
       const typingText = document.getElementById("typing-text");
       const quotesBg = document.getElementById("floating-quotes");
+      const body = document.body;
+
+      const bgColors = ['#ff9a9e', '#fad0c4', '#fbc2eb', '#a6c1ee', '#ffe0e0', '#c2f0fc'];
+      let colorIndex = 0;
+
+      setInterval(() => {
+        body.style.backgroundColor = bgColors[colorIndex];
+        colorIndex = (colorIndex + 1) % bgColors.length;
+      }, 4000); // every 4 seconds
+
       const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
       const loveQuotes = [
         `Payel, you're my moonlight 🌙`,
@@ -196,47 +222,47 @@
         `Payel, you're my Earth of Love 🌏`,
         `Every moment with Payel is magic ✨`
       ];
-      let i=0;
+      let i = 0;
 
-      function typeWriterLoop(){
-        if(i < text.length){
+      function typeWriterLoop() {
+        if (i < text.length) {
           typingText.innerHTML += text.charAt(i++);
           setTimeout(typeWriterLoop, 40);
         } else {
-          setTimeout(() => { typingText.innerHTML=''; i=0; typeWriterLoop(); },4000);
+          setTimeout(() => { typingText.innerHTML = ''; i = 0; typeWriterLoop(); }, 4000);
         }
       }
 
-      function addFloatingQuotes(){
-        for(let j=0;j<25;j++){
+      function addFloatingQuotes() {
+        for (let j = 0; j < 20; j++) {
           const span = document.createElement('span');
-          span.innerText = loveQuotes[Math.floor(Math.random()*loveQuotes.length)];
-          span.style.left = `${Math.random()*100}%`;
-          span.style.top = `${Math.random()*100}%`;
-          span.style.animationDelay = `${Math.random()*15}s`;
+          span.innerText = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+          span.style.left = `${Math.random() * 100}%`;
+          span.style.top = `${Math.random() * 100}%`;
+          span.style.animationDelay = `${Math.random() * 15}s`;
           quotesBg.appendChild(span);
         }
       }
 
-      function autoScrollGallery(){
+      function autoScrollGallery() {
         const maxScroll = gallery.scrollWidth - gallery.clientWidth;
         let pos = gallery.scrollLeft + gallery.clientWidth;
-        if(pos >= maxScroll) pos = 0;
+        if (pos >= maxScroll) pos = 0;
         gallery.scrollTo({ left: pos, behavior: 'smooth' });
       }
 
       gallery.addEventListener('click', e => {
-        const emojis = ["💖","🌹","💘","💕","❤️"];
-        for(let k=0;k<8;k++){
+        const emojis = ["💖", "🌹", "💘", "💕", "❤️"];
+        for (let k = 0; k < 8; k++) {
           const d = document.createElement('div');
-          d.className='emoji-burst';
+          d.className = 'emoji-burst';
           d.style.left = `${e.pageX}px`;
           d.style.top = `${e.pageY}px`;
-          d.style.setProperty('--x', `${Math.random()*200-100}px`);
-          d.style.setProperty('--y', `${Math.random()*-150-50}px`);
-          d.innerText= emojis[Math.floor(Math.random()*emojis.length)];
+          d.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+          d.style.setProperty('--y', `${Math.random() * -150 - 50}px`);
+          d.innerText = emojis[Math.floor(Math.random() * emojis.length)];
           document.body.appendChild(d);
-          setTimeout(()=>d.remove(),1200);
+          setTimeout(() => d.remove(), 1200);
         }
       });
 
