@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For Payel Bhunia ❤️ From Kanan</title>
+  <title>For Payel Bhunia ❤ From Kanan</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -203,7 +203,7 @@
 
   <div class="message-box">
     <div id="typing-text"></div>
-    <div class="heart-beat">❤️</div>
+    <div class="heart-beat">❤</div>
     <p class="footer">
       Always yours,<br><strong>Kanan Pandit</strong>
     </p>
@@ -211,7 +211,7 @@
 
   <div style="text-align: center; margin-top: 40px;">
     <p style="font-size: 1rem; color: #ffffff; background: linear-gradient(to right, #36d1dc, #5b86e5); padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 600; display: inline-block; max-width: 90%;">
-      Designed with ❤️ by <strong>Kanan Pandit</strong><br>
+      Designed with ❤ by <strong>Kanan Pandit</strong><br>
       💼 Data Scientist & Creative Developer<br>
       🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color: #fff; text-decoration: underline;">kananpandit.dev</a><br>
       📧 kananpandit@gmail.com
@@ -224,37 +224,27 @@
     <source src="background_music.mp3" type="audio/mpeg">
   </audio>
 
-<script>
-  const audio = document.getElementById("bg-music");
-  const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
-  let i = 0;
+  <script>
+    const audio = document.getElementById("bg-music");
+    const text = These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.;
+    let i = 0;
 
-  function typeWriterLoop() {
-    const display = document.getElementById("typing-text");
-
-    if (i < text.length) {
-      display.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriterLoop, 40);
-    } else {
-      setTimeout(() => {
-        display.innerHTML = '';
-        i = 0;
-        typeWriterLoop();
-      }, 3000); // wait 3 seconds before starting again
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typing-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+      }
     }
-  }
 
-  window.addEventListener("click", () => {
-    audio.play().catch(() => {});
-  });
+    window.addEventListener("click", () => {
+      audio.play().catch(() => {});
+    });
+    window.addEventListener("touchstart", () => {
+      audio.play().catch(() => {});
+    });
 
-  window.addEventListener("touchstart", () => {
-    audio.play().catch(() => {});
-  });
-
-  window.onload = typeWriterLoop;
-</script>
-
+    window.onload = typeWriter;
+  </script>
 </body>
 </html>
