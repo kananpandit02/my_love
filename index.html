@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Payel Bhunia ❤️ From Kanan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      animation: changeBg 20s infinite linear;
+    }
+
+    @keyframes changeBg {
+      0% { background: #ff9a9e; }
+      25% { background: #fad0c4; }
+      50% { background: #fbc2eb; }
+      75% { background: #a6c1ee; }
+      100% { background: #ff9a9e; }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      font-size: 3.5rem;
+      color: #fff;
+      text-shadow: 0 0 15px #ff3c7e;
+      margin-top: 60px;
+      animation: fadeInDown 2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 .heart {
+      animation: blinkHeart 1.2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes blinkHeart {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 30px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 80vw;
+      max-width: 280px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .message-box {
+      max-width: 800px;
+      background: #ffffffcc;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+    }
+
+    #typing-text {
+      font-size: 1.3rem;
+      color: #660033;
+      line-height: 1.7;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+
+    .heart-beat {
+      font-size: 2.5rem;
+      color: #ff3366;
+      animation: beat 1.2s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #aa0044;
+    }
+
+    .dev-info {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .dev-info img {
+      width: 80vw;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      animation: floatPic 4s ease-in-out infinite;
+    }
+
+    @keyframes floatPic {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .emoji-burst {
+      position: absolute;
+      font-size: 2rem;
+      animation: burstUp 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes burstUp {
+      0% { opacity: 1; transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(2); }
+    }
+
+    .floating-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-bg span {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff69b4;
+      opacity: 0.6;
+      animation: floatEmojis 12s linear infinite;
+    }
+
+    @keyframes floatEmojis {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 2.4rem; }
+      .gallery img { width: 90vw; }
+      #typing-text { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-bg" id="floating-bg"></div>
+
+  <h1>To My Love, Payel Bhunia <span class="heart">❤️</span></h1>
+
+  <div class="gallery">
+    <img src="photo1.jpg" onclick="loveExplosion(event)">
+    <img src="photo2.jpg" onclick="loveExplosion(event)">
+    <img src="photo3.jpg" onclick="loveExplosion(event)">
+    <img src="photo4.jpg" onclick="loveExplosion(event)">
+    <img src="photo5.jpg" onclick="loveExplosion(event)">
+  </div>
+
+  <div class="message-box">
+    <div id="typing-text"></div>
+    <div class="heart-beat">❤️</div>
+    <p class="footer">
+      Always yours,<br><strong>Kanan Pandit</strong>
+    </p>
+  </div>
+
+
+
+
+
+
+
+
+  <!-- Developer Info
+<div class="dev-info" style="background: rgba(255,255,255,0.85); border-radius: 15px; padding: 20px; max-width: 350px; margin: 40px auto;">
+  <p style="color:#222; font-weight:600; font-size: 1rem; line-height: 1.6;">
+    Designed with ❤️ by <strong>Kanan Pandit</strong><br>
+    🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color: #aa0044; text-decoration: underline;">kananpandit.dev</a><br>
+    🔗 <a href="https://www.linkedin.com/in/kanan-pandit/" target="_blank" style="color: #aa0044; text-decoration: underline;">LinkedIn</a><br>
+    📧 <a href="mailto:kananpandit@gmail.com" style="color: #aa0044;">kananpandit@gmail.com</a>
+  </p>
+  <img src="kanan.jpg" alt="Kanan Pandit">
+</div> -->
+
+
+
+
+<div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 1rem; color: #ffffff; background: linear-gradient(to right, #36d1dc, #5b86e5); padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 600; display: inline-block; max-width: 90%;">
+      Designed with ❤️ by <strong>Kanan Pandit</strong><br>
+      💼 Data Scientist & Creative Developer<br>
+      🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color: #fff; text-decoration: underline;">kananpandit.dev</a><br>
+      📧 kananpandit@gmail.com
+    </p>
+    <br>
+    <img src="kanan.jpg" alt="Kanan Pandit" style="width: 80vw; max-width: 300px; height: auto; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); margin-top: 20px;">
+  </div>
+
+<!--   
+  <div class="dev-info">
+    <p style="color:#004488; font-weight:bold;">
+      Designed with ❤️ by <strong>Kanan Pandit</strong><br>
+      🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color:#004488; text-decoration: underline;">kananpandit.dev</a><br>
+      🔗 <a href="https://www.linkedin.com/in/kanan-pandit/" target="_blank" style="color:#004488; text-decoration: underline;">LinkedIn</a><br>
+      📧 kananpandit@gmail.com
+    </p>
+    <img src="kanan.jpg" alt="Kanan Pandit">
+  </div> -->
+
+  <audio id="bg-music" loop>
+    <source src="background_music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById("bg-music");
+    const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
+    let i = 0;
+    function typeWriterLoop() {
+      const display = document.getElementById("typing-text");
+      if (i < text.length) {
+        display.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriterLoop, 40);
+      } else {
+        setTimeout(() => {
+          display.innerHTML = '';
+          i = 0;
+          typeWriterLoop();
+        }, 5000);
+      }
+    }
+    window.onload = () => {
+      typeWriterLoop();
+      addFloatingQuotes();
+    };
+
+    window.addEventListener("click", () => audio.play().catch(() => {}));
+    window.addEventListener("touchstart", () => audio.play().catch(() => {}));
+
+    function loveExplosion(e) {
+      const emojis = ["💖", "🌹", "😘", "💘", "💞", "💋", "❤️‍🔥"];
+      for (let i = 0; i < 7; i++) {
+        const emoji = document.createElement("div");
+        emoji.className = "emoji-burst";
+        emoji.style.left = `${e.pageX}px`;
+        emoji.style.top = `${e.pageY}px`;
+        emoji.style.setProperty("--x", `${Math.random() * 200 - 100}px`);
+        emoji.style.setProperty("--y", `${Math.random() * -150 - 50}px`);
+        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 1000);
+      }
+    }
+
+    function addFloatingQuotes() {
+      const bg = document.getElementById("floating-bg");
+      const texts = [
+        "You're my moonlight 🌙",
+        "Forever starts with you 💍",
+        "My heart beats only for you 💓",
+        "You're my Earth of Love 🌏",
+        "You complete my universe 🌌",
+        "Love is in the air 💖🌹"
+      ];
+      for (let i = 0; i < 30; i++) {
+        const span = document.createElement("span");
+        span.innerText = texts[Math.floor(Math.random() * texts.length)];
+        span.style.left = `${Math.random() * 100}%`;
+        span.style.top = `${Math.random() * 100}%`;
+        span.style.animationDelay = `${Math.random() * 15}s`;
+        bg.appendChild(span);
+      }
+    }
+  </script>
+</body>
+</html>
