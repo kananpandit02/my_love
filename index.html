@@ -15,13 +15,17 @@
       background-size: 400% 400%;
       animation: gradientMove 20s ease infinite;
     }
-
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
+    .floating-hearts, .floating-quotes {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
     .floating-hearts span, .floating-quotes span {
       position: absolute;
       font-size: 1.5rem;
@@ -29,21 +33,11 @@
       opacity: 0.4;
       color: #ff66a3;
     }
-
-    .floating-hearts, .floating-quotes {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     @keyframes floatUp {
       0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
       30% { opacity: 0.8; }
       100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
-
     h1 {
       font-family: 'Great Vibes', cursive;
       text-align: center;
@@ -53,40 +47,36 @@
       margin-top: 60px;
       animation: fadeInDown 2s ease;
     }
-
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-50px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
+    h1 .heart {
+      animation: beat 1.2s infinite;
+    }
     .gallery {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 20px;
       padding: 30px;
-      max-width: 100%;
       box-sizing: border-box;
-      z-index: 1;
       position: relative;
       scroll-behavior: smooth;
+      z-index: 1;
     }
-
     .gallery img {
+      scroll-snap-align: center;
       width: 80vw;
       max-width: 300px;
-      flex: 0 0 auto;
-      scroll-snap-align: center;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+      box-shadow: 0 10px 30px rgba(255,105,180,0.5);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
     }
-
     .gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 15px 35px rgba(255, 20, 147, 0.7);
     }
-
     .message-box {
       max-width: 800px;
       background: #ffffffcc;
@@ -94,9 +84,9 @@
       padding: 30px;
       border-radius: 25px;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+      box-shadow: 0 8px 25px rgba(255,105,180,0.3);
+      z-index: 1;
     }
-
     #typing-text {
       font-size: 1.3rem;
       color: #660033;
@@ -104,77 +94,88 @@
       min-height: 100px;
       white-space: pre-wrap;
     }
-
     .heart-beat {
       font-size: 2.5rem;
       color: #ff3366;
       animation: beat 1.2s infinite;
     }
-
     @keyframes beat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
     }
-
     .footer {
       margin-top: 20px;
       font-size: 1.2rem;
       color: #aa0044;
     }
-
-    audio {
-      display: none;
+    .dev-info {
+      text-align: center;
+      margin: 40px 0;
+      z-index: 1;
     }
-
-    @media (max-width: 500px) {
-      h1 { font-size: 2.4rem; margin-top: 40px; }
-      #typing-text { font-size: 1.1rem; }
+    .dev-info img {
+      width: 80vw;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      animation: floatPic 4s ease-in-out infinite;
+    }
+    @keyframes floatPic {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .emoji-burst {
+      position: absolute;
+      font-size: 2rem;
+      animation: burstUp 1s ease-out forwards;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes burstUp {
+      0% { opacity:1; transform:translate(0,0) scale(1); }
+      100% { opacity:0; transform:translate(var(--x),var(--y)) scale(2); }
+    }
+    @media(max-width:500px) {
+      h1 { font-size: 2.4rem; }
       .gallery img { width: 90vw; }
+      #typing-text { font-size:1.1rem; }
     }
   </style>
 </head>
 <body>
   <div class="floating-hearts">
-    <span style="left: 10%; animation-delay: 0s;">💖</span>
-    <span style="left: 25%; animation-delay: 2s;">💘</span>
-    <span style="left: 45%; animation-delay: 1s;">💗</span>
-    <span style="left: 65%; animation-delay: 3s;">💕</span>
-    <span style="left: 80%; animation-delay: 0.5s;">💓</span>
+    <span style="left:10%; animation-delay:0s;">💖</span>
+    <span style="left:30%; animation-delay:2s;">💘</span>
+    <span style="left:50%; animation-delay:1s;">💗</span>
+    <span style="left:70%; animation-delay:3s;">💕</span>
+    <span style="left:90%; animation-delay:0.5s;">💓</span>
   </div>
+  <div class="floating-quotes" id="floating-quotes"></div>
 
-  <div class="floating-quotes">
-    <span style="left: 15%; animation-delay: 1s;">You are my forever 💌</span>
-    <span style="left: 40%; animation-delay: 2s;">Every moment with you is magic ✨</span>
-    <span style="left: 70%; animation-delay: 4s;">Together, always 💑</span>
-  </div>
-
-  <h1>To My Love, Payel Bhunia 💕</h1>
+  <h1>To My Love, Payel Bhunia <span class="heart">❤️</span></h1>
 
   <div class="gallery" id="gallery">
-    <img src="photo1.jpg" alt="Photo 1">
-    <img src="photo2.jpg" alt="Photo 2">
-    <img src="photo3.jpg" alt="Photo 3">
-    <img src="photo4.jpg" alt="Photo 4">
-    <img src="photo5.jpg" alt="Photo 5">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
   </div>
 
   <div class="message-box">
     <div id="typing-text"></div>
     <div class="heart-beat">❤️</div>
-    <p class="footer">
-      Always yours,<br><strong>Kanan Pandit</strong>
-    </p>
+    <p class="footer">Always yours,<br><strong>Kanan Pandit</strong></p>
   </div>
 
-  <div style="text-align: center; margin-top: 40px;">
-    <p style="font-size: 1rem; color: #ffffff; background: linear-gradient(to right, #36d1dc, #5b86e5); padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 600; display: inline-block; max-width: 90%;">
+  <div class="dev-info">
+    <p style="color:#00aaff; font-weight:bold;">
       Designed with ❤️ by <strong>Kanan Pandit</strong><br>
       💼 Data Scientist & Creative Developer<br>
-      🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color: #fff; text-decoration: underline;">kananpandit.dev</a><br>
+      🌐 <a href="https://kananpanditportfolio.netlify.app/" target="_blank" style="color:#00aaff; text-decoration:underline;">kananpandit.dev</a><br>
       📧 kananpandit@gmail.com
     </p>
-    <br>
-    <img src="kanan.jpg" alt="Kanan Pandit" style="width: 80vw; max-width: 300px; height: auto; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); margin-top: 20px;">
+    <img src="kanan.jpg" alt="Kanan Pandit">
   </div>
 
   <audio id="bg-music" loop>
@@ -182,42 +183,70 @@
   </audio>
 
   <script>
-    const audio = document.getElementById("bg-music");
-    const gallery = document.getElementById("gallery");
-    const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
-    let i = 0;
-
-    function typeWriterLoop() {
-      const display = document.getElementById("typing-text");
-      if (i < text.length) {
-        display.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriterLoop, 40);
-      } else {
-        setTimeout(() => {
-          display.innerHTML = '';
-          i = 0;
-          typeWriterLoop();
-        }, 4000);
-      }
-    }
-
-    function autoScrollGallery() {
-      const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-      let scrollLeft = gallery.scrollLeft + gallery.clientWidth;
-      if (scrollLeft >= maxScroll) {
-        scrollLeft = 0;
-      }
-      gallery.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-    }
-
     window.onload = () => {
+      const audio = document.getElementById("bg-music");
+      const gallery = document.getElementById("gallery");
+      const typingText = document.getElementById("typing-text");
+      const quotesBg = document.getElementById("floating-quotes");
+      const text = `These moments are just a glimpse of what my heart holds for you.\nYour smile lights up my world, and your love makes everything better. 💫\n\nI promise to keep creating memories like these, forever with you.`;
+      const loveQuotes = [
+        `Payel, you're my moonlight 🌙`,
+        `Payel, you complete my universe 🌌`,
+        `Payel, my heart beats for you 💓`,
+        `Payel, you're my Earth of Love 🌏`,
+        `Every moment with Payel is magic ✨`
+      ];
+      let i=0;
+
+      function typeWriterLoop(){
+        if(i < text.length){
+          typingText.innerHTML += text.charAt(i++);
+          setTimeout(typeWriterLoop, 40);
+        } else {
+          setTimeout(() => { typingText.innerHTML=''; i=0; typeWriterLoop(); },4000);
+        }
+      }
+
+      function addFloatingQuotes(){
+        for(let j=0;j<25;j++){
+          const span = document.createElement('span');
+          span.innerText = loveQuotes[Math.floor(Math.random()*loveQuotes.length)];
+          span.style.left = `${Math.random()*100}%`;
+          span.style.top = `${Math.random()*100}%`;
+          span.style.animationDelay = `${Math.random()*15}s`;
+          quotesBg.appendChild(span);
+        }
+      }
+
+      function autoScrollGallery(){
+        const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+        let pos = gallery.scrollLeft + gallery.clientWidth;
+        if(pos >= maxScroll) pos = 0;
+        gallery.scrollTo({ left: pos, behavior: 'smooth' });
+      }
+
+      gallery.addEventListener('click', e => {
+        const emojis = ["💖","🌹","💘","💕","❤️"];
+        for(let k=0;k<8;k++){
+          const d = document.createElement('div');
+          d.className='emoji-burst';
+          d.style.left = `${e.pageX}px`;
+          d.style.top = `${e.pageY}px`;
+          d.style.setProperty('--x', `${Math.random()*200-100}px`);
+          d.style.setProperty('--y', `${Math.random()*-150-50}px`);
+          d.innerText= emojis[Math.floor(Math.random()*emojis.length)];
+          document.body.appendChild(d);
+          setTimeout(()=>d.remove(),1200);
+        }
+      });
+
+      window.addEventListener("click", () => audio.play().catch(() => {}));
+      window.addEventListener("touchstart", () => audio.play().catch(() => {}));
+
       typeWriterLoop();
+      addFloatingQuotes();
       setInterval(autoScrollGallery, 3500);
     };
-
-    window.addEventListener("click", () => audio.play().catch(() => {}));
-    window.addEventListener("touchstart", () => audio.play().catch(() => {}));
   </script>
 </body>
 </html>
